@@ -1,0 +1,10 @@
+c:\Users\M.PUGAZH\OneDrive\Desktop\hotel_mang\
+    run.py
+    frontend\
+        templates\
+            menu.html
+            book_room.html
+            booking_confirmation.html
+            view_booked_room.html
+            enter_details.html
+            home.html

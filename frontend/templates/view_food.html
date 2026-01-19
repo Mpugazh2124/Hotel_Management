@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Food</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            text-align: center;
+            background-image: url('https://static.vecteezy.com/system/resources/thumbnails/037/236/579/small/ai-generated-beautuful-fast-food-background-with-copy-space-free-photo.jpg'); /* Your chosen background */
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: white;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        h2 {
+            font-size: 50px;
+            margin-top: 20px;
+            color: #ffcc00;
+            text-shadow: 3px 3px 20px rgba(255, 255, 255, 0.8);
+        }
+
+        .food-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            padding: 20px;
+            width: 80%;
+        }
+
+        .food-card {
+            background: rgba(0, 0, 0, 0.6); /* Dark glass effect */
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            border-radius: 15px;
+            width: 260px;
+            text-align: center;
+            box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+
+        .food-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0px 0px 30px rgba(255, 255, 255, 0.5);
+        }
+
+        .food-name {
+            font-size: 24px;
+            font-weight: 600;
+            color: #ffdd57;
+            text-shadow: 2px 2px 10px rgba(255, 255, 255, 0.3);
+        }
+
+        .food-price {
+            font-size: 22px;
+            color: #ff5733;
+            font-weight: bold;
+        }
+
+        .btn-order {
+            margin-top: 10px;
+            padding: 10px 20px;
+            font-size: 18px;
+            background-color: #ff5733;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.3s ease-in-out;
+            display: inline-block;
+        }
+
+        .btn-order:hover {
+            background-color: #cc2900;
+            transform: scale(1.08);
+        }
+    </style>
+</head>
+<body>
+    <h2>🍕 Delicious Food Menu 🍔</h2>
+    <div class="food-container">
+        {% if food_items %}
+            {% for food in food_items %}
+                <div class="food-card">
+                    <p class="food-name">{{ food.food_name }}</p>
+                    <p class="food-price">₹{{ food.price }}</p>
+                    <a href="#" class="btn-order">Order Now</a>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>No food items available.</p>
+        {% endif %}
+    </div>
+</body>
+</html>

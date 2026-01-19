@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Management System!!!</title>
+    <style>
+        html, body {
+            min-height: 100vh; /* Ensures full viewport height */
+        }
+        body {
+            font-size: 30px; /* Increased font size */
+            text-align: center;
+            background-image: url('https://th.bing.com/th/id/R.5ccdf51648ad3a516621d599a796ec15?rik=xE85%2bnBvnOIC2A&riu=http%3a%2f%2fimages.dailyhive.com%2f20171211141158%2ffour-seasons-vancouver-hotel-1.jpeg&ehk=MJGeuP0RN2ofJe0b4a7B%2fLrZVCFaMshnjpf8hr1KBdU%3d&risl=&pid=ImgRaw&r=0'); 
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed; 
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+            color: rgb(215, 18, 225); 
+        }
+        h1 {
+            font-size: 36px;
+            margin-top: 50px;
+        }
+        button {
+            font-size: 20px;
+            padding: 10px 20px;
+            margin: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .section {
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            height: 300px;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px auto;
+            width: 80%;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .book-room-section {
+            background-image: url('https://wallpapercave.com/uwp/uwp4225915.jpeg'); 
+        }
+        .view-booked-rooms-section {
+            background-image: url('https://th.bing.com/th/id/R.e56e59123af05e2a50b21fb9e7a1da66?rik=1TjbC8g8Peo%2b8Q&riu=http%3a%2f%2fwww.budgetmaldives.com%2fwp-content%2fuploads%2f2020%2f05%2fBaros-Maldives-villa-with-pool.jpg&ehk=AsOqTlAj2KPpcHy0DTwZ4LCBB6dloCOQEownpLhmdEw%3d&risl=&pid=ImgRaw&r=0');
+        }
+        .view-food-section {
+            background-image: url('https://th.bing.com/th/id/OIP.Eh2GCnXA9QzImYzPB1SZkwHaE8?w=290&h=193&c=7&r=0&o=5&pid=1.7');
+        }
+        .order-food-section {
+            background-image: url('https://th.bing.com/th/id/OIP.hYyOHzob3j0LxOe0JYH9hgHaFL?w=275&h=193&c=7&r=0&o=5&pid=1.7');
+        }
+        .exit-section {
+            background-image: url('https://thumbs.dreamstime.com/b/thank-you-lettering-blurred-lights-background-thank-you-lettering-102011881.jpg?w=576');
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to Hotel Management System</h1>
+    <form method="POST">
+        {% if book_room_selected %}
+        <div class="section book-room-section">
+            <button type="submit" name="book-room">1. Book a Room</button>
+        </div>
+        {% else %}
+        <button type="submit" name="book_room">1. Book a Room</button><br>
+        {% endif %}
+
+        {% if view_booked_rooms_selected %}
+        <div class="section view-booked-rooms-section">
+            <button type="submit" name="view_booked_rooms">2. Display Booked Rooms</button>
+            <button type="submit" name="clear_booked_rooms" style="background-color: #f44336; margin-top: 10px;">Clear</button>
+        </div>
+        {% else %}
+        <button type="submit" name="view_booked_rooms">2. Display Booked Rooms</button><br>
+        {% endif %}
+
+        {% if view_food_selected %}
+        <div class="section view-food-section">
+            <button type="submit" name="view_food">3. View Food</button>
+            <div>
+                <button type="submit" name="view_breakfast">- Breakfast</button><br>
+                <button type="submit" name="view_lunch">- Lunch</button><br>
+                <button type="submit" name="view_snacks">- Snacks</button><br>
+                <button type="submit" name="view_dinner">- Dinner</button><br>
+            </div>
+        </div>
+        {% else %}
+        <button type="submit" name="view_food">3. View Food</button><br>
+        {% endif %}
+
+        {% if order_food_selected %}
+        <div class="section order-food-section">
+            <button type="submit" name="order_food">4. Order Food</button>
+        </div>
+        {% else %}
+        <button type="submit" name="order_food">4. Order Food</button><br>
+        {% endif %}
+
+        {% if exit_selected %}
+        <div class="section exit-section">
+            <button type="submit" name="exit">5. Exit</button>
+        </div>
+        {% else %}
+        <button type="submit" name="exit">5. Exit</button><br>
+        {% endif %}
+    </form>
+</body>
+</html>
+
+

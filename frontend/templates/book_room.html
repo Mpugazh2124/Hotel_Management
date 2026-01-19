@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book a Room</title>
+    <style>
+        /* Google Font */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background: url('https://wallpaperaccess.com/full/465716.jpg') no-repeat center center/cover;
+            color: white;
+        }
+
+        .form-container {
+            background: rgba(0, 0, 0, 0.6); /* More transparent to show background */
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5); /* Light shadow for better visibility */
+            width: 400px;
+            text-align: center;
+            animation: fadeIn 0.8s ease-in-out;
+        }
+
+        h2 {
+            font-size: 32px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            text-align: left;
+            font-weight: 400;
+            margin: 10px 0 5px;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 8px;
+            border: none;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            outline: none;
+            transition: 0.3s ease-in-out;
+        }
+
+        input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        input:focus, select:focus {
+            background: rgba(255, 255, 255, 0.3);
+            box-shadow: 0px 0px 8px rgba(255, 255, 255, 0.5);
+        }
+
+        option {
+            background: black;
+            color: white;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 15px;
+            font-size: 18px;
+            font-weight: 600;
+            border: none;
+            border-radius: 8px;
+            background: linear-gradient(45deg, #ffcc00, #ff9900);
+            color: black;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: linear-gradient(45deg, #ff9900, #ff6600);
+            transform: scale(1.05);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+
+    <script>
+        function validateForm() {
+            const form = document.forms["bookingForm"];
+            const roomNumber = form["room_number"].value;
+            const customerName = form["customer_name"].value;
+            const roomType = form["room_type"].value;
+            const fromDate = form["from_date"].value;
+            const toDate = form["to_date"].value;
+
+            if (!roomNumber || !customerName || !roomType || !fromDate || !toDate) {
+                alert("Please fill in all the details correctly.");
+                return false;
+            }
+
+            const today = new Date().toISOString().split("T")[0]; 
+            if (fromDate < today) {
+                alert("Check-in date cannot be in the past.");
+                return false;
+            }
+
+            if (toDate <= fromDate) {
+                alert("Check-out date must be after the check-in date.");
+                return false;
+            }
+
+            return true;
+        }
+    </script>
+</head>
+<body>
+    <div class="form-container">
+        <h2>Book a Room</h2>
+
+        {% if error_message %}
+            <p style="color: red; font-weight: bold;">{{ error_message }}</p>
+        {% endif %}
+
+        <form name="bookingForm" method="POST" action="/book-room" onsubmit="return validateForm()">
+            <label for="room_number">Room Number:</label>
+            <input type="text" id="room_number" name="room_number" placeholder="Enter Room Number" required>
+
+            <label for="customer_name">Customer Name:</label>
+            <input type="text" id="customer_name" name="customer_name" required>
+
+            <label for="room_type">Room Type:</label>
+            <select id="room_type" name="room_type" required>
+                <option value="">Select Room Type</option>
+                <option value="Single">Single</option>
+                <option value="Double">Double</option>
+                <option value="Suite">Suite</option>
+            </select>
+
+            <label for="from_date">Check-in Date:</label>
+            <input type="date" id="from_date" name="from_date" required>
+
+            <label for="to_date">Check-out Date:</label>
+            <input type="date" id="to_date" name="to_date" required>
+
+            <button type="submit">Book Now</button>
+        </form>
+    </div>
+</body>
+</html>
